@@ -40,9 +40,13 @@ function devBuild() {
             file: 'dist/component.umd.js',
             format: 'umd',
             name,
-            sourcemap: true
+            sourcemap: true,
+            globals: {
+                react: 'React',
+                aphrodite: 'aphrodite',
+            }
         },
-        external: ['aphrodite'],
+        external: ['react', 'aphrodite'],
         plugins: [
             eslint({
                 throwOnError: true

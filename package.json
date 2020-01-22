@@ -19,7 +19,10 @@
     "release": "npm run prepublish && np",
     "watch": "rollup -c --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@volusion/element-proptypes": "^1.0.17",
+    "react": "^16.12.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
