@@ -43,7 +43,7 @@ function devBuild() {
             sourcemap: true,
             globals: {
                 react: 'React',
-                aphrodite: 'aphrodite',
+                aphrodite: 'aphrodite'
             }
         },
         external: ['react', 'aphrodite'],

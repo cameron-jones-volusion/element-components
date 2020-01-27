@@ -16,6 +16,7 @@
     "rules": {
         "no-const-assign": "error",
         "react/no-unused-prop-types": "off",
+        "react/prop-types": [0],
         "no-var": "error",
         "semi": "error",
         "prefer-const": "error",
