@@ -30,7 +30,7 @@ const component = ({ testProp, ...props }) => {
     };
 
     return (
-        <div {...props} style={{border: `1px solid ${props.borderColor}`}}>
+        <div {...props} style={{ border: `1px solid ${props.borderColor}` }}>
             <h2>{testProp}</h2>
             <button style={buttonStyles}>{testProp}</button>
         </div>
