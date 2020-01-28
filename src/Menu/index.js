@@ -3,24 +3,34 @@ import { ElementPropTypes } from '@volusion/element-proptypes';
 export const name = 'DemoComponent';
 
 export const defaultConfig = {
-    testProp: 'Default test prop'
+    testProp: 'Default test prop',
+    borderColor: '#f00'
 };
 
 export const configSchema = {
-    testProp: ElementPropTypes.string
-    // backgroundColor: ElementPropTypes.color
+    testProp: ElementPropTypes.string,
+    backgroundColor: ElementPropTypes.color,
+    borderColor: ElementPropTypes.color
 };
 
 const component = ({ testProp, ...props }) => {
     const globalStyles = props.globalStyles || {};
 
+    const globalButtonStyles =
+        globalStyles.volComponentButton.primaryButtonStyles;
+
     const buttonStyles = {
-        backgroundColor: '#f00',
-        ...globalStyles.volComponentButton.primaryButtonStyles
+        ...globalButtonStyles,
+        backgroundColor:
+            props.backgroundColor ||
+            globalButtonStyles.backgroundColor ||
+            '#f00',
+        padding: '25px 10px',
+        border: 'none'
     };
 
     return (
-        <div {...props}>
+        <div {...props} style={{border: `1px solid ${props.borderColor}`}}>
             <h2>{testProp}</h2>
             <button style={buttonStyles}>{testProp}</button>
         </div>
