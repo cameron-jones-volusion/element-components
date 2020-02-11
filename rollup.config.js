@@ -49,7 +49,7 @@ function devBuild() {
         external: ['react', 'aphrodite'],
         plugins: [
             eslint({
-                throwOnError: true
+                throwOnError: false
             }),
             babel({
                 plugins: ['external-helpers'],
