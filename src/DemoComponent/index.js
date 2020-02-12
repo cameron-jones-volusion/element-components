@@ -61,15 +61,15 @@ const propTypeConfigs = [
     ["editorMinimal", "<p>Editable Text</p>"],
     ["readOnly", "Read Only Value"],
     ["oneOf", "Option A", ["Option A", "Option B"]],
-    // [
-    //     "shape",
-    //     { color: "#fff", fontFamily: "Helvetica Neue", fontSize: 16 },
-    //     {
-    //         color: ElementPropTypes.color,
-    //         fontFamily: ElementPropTypes.string,
-    //         fontSize: ElementPropTypes.number,
-    //     },
-    // ],
+    [
+        "shape",
+        { color: "#fff", fontFamily: "Helvetica Neue", fontSize: 16 },
+        {
+            color: ElementPropTypes.color,
+            fontFamily: ElementPropTypes.string,
+            fontSize: ElementPropTypes.number,
+        },
+    ],
     // [
     //     "embeddable",
     //     {
@@ -113,7 +113,7 @@ export const configSchema = {
     ...testConfigs.reduce(extractSchemas, {})
 };
 
-const component = ({ testProp, ...props }) => {
+const component = (props) => {
     // const globalStyles = props.globalStyles || {};
 
     // const globalButtonStyles =
@@ -128,16 +128,26 @@ const component = ({ testProp, ...props }) => {
     //     padding: '25px 10px',
     //     border: 'none'
     // };
+    //
+
+    const codeSnippet = {
+        backgroundColor: '#eee',
+        borderRadius: '1rem',
+        boxShadow: 'inset 1px 1px 1px 1px rbga(0, 0, 0, 0.3)'
+    }
 
     return (
-        <div {...props} style={{ border: `1px solid ${props.borderColor}` }}>
-            <h2>{testProp}</h2>
+        <div style={{ border: `1px solid ${props.borderColor}` }}>
+            <h2>{props.testProp}</h2>
+            <pre style={codeSnippet} >
+                {JSON.stringify(props, null, 2)}
+            </pre>
             {/* <button style={buttonStyles}>{testProp}</button> */}
         </div>
     );
 };
 
-component.propTypes = configSchema;
+// component.propTypes = configSchema;
 component.defaultProps = defaultConfig;
 
 export { component };
