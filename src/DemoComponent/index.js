@@ -4,7 +4,7 @@ export const name = 'DemoComponent';
 
 export const factory = () => <h1>COMPONENT FROM FACTORY</h1>;
 
-const createConfig = (proptype: any, proptypeArgs: any) => {
+const createConfig = (proptype, proptypeArgs) => {
     if (proptypeArgs) {
         return {
             [`${proptype}Prop`]: {
@@ -90,7 +90,7 @@ const propTypeConfigs = [
     ],
 ];
 
-const testConfigs = propTypeConfigs.map((config): any => {
+const testConfigs = propTypeConfigs.map((config) => {
     const [proptype, value, proptypeArgs] = config;
     const schema = createConfig(proptype, proptypeArgs);
     const defaults = { [`${proptype}Prop`]: value }
@@ -100,51 +100,39 @@ const testConfigs = propTypeConfigs.map((config): any => {
 const extractDefaults = (result, config) => ({ ...result, ...config.defaults });
 const extractSchemas = (result, config) => ({ ...result, ...config.schema });
 
-export const defaultConfig = {
-    testProp: 'Default test prop',
-    borderColor: '#f00',
-    ...testConfigs.reduce(extractDefaults, {})
-};
+export const defaultConfig = testConfigs.reduce(extractDefaults, {})
 
-export const configSchema = {
-    testProp: ElementPropTypes.string,
-    backgroundColor: ElementPropTypes.color,
-    borderColor: ElementPropTypes.color,
-    ...testConfigs.reduce(extractSchemas, {})
-};
+export const configSchema = testConfigs.reduce(extractSchemas, {})
 
 const component = (props) => {
-    // const globalStyles = props.globalStyles || {};
-
-    // const globalButtonStyles =
-    //     globalStyles.volComponentButton.primaryButtonStyles;
-
-    // const buttonStyles = {
-    //     ...globalButtonStyles,
-    //     backgroundColor:
-    //         props.backgroundColor ||
-    //         globalButtonStyles.backgroundColor ||
-    //         '#f00',
-    //     padding: '25px 10px',
-    //     border: 'none'
-    // };
-    //
-
     const codeSnippet = {
+        padding: '1rem',
         backgroundColor: '#eee',
         borderRadius: '1rem',
-        boxShadow: 'inset 1px 1px 1px 1px rbga(0, 0, 0, 0.3)'
+        boxShadow: 'inset 0px 1px 1px 1px rgba(0, 0, 0, 0.1)'
     }
 
+    const propDisplay = {
+        padding: '1rem',
+        borderBottom: "1px solid #777"
+    }
+
+    return <p>COMPONENT TEST</p>
+        /*
     return (
-        <div style={{ border: `1px solid ${props.borderColor}` }}>
-            <h2>{props.testProp}</h2>
-            <pre style={codeSnippet} >
-                {JSON.stringify(props, null, 2)}
-            </pre>
-            {/* <button style={buttonStyles}>{testProp}</button> */}
+        <div>
+            {Object.keys(props).map(propName => {
+                const value = props[propName];
+                return (
+                <div key={propName} >
+                    <p style={propDisplay}><b>{propName}:</b></p>
+                    <pre style={codeSnippet}>{JSON.stringify(value, null, 2)}</pre>
+                </div>
+                )
+            })} 
         </div>
     );
+        */
 };
 
 // component.propTypes = configSchema;
