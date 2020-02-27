@@ -108,7 +108,7 @@ const component = (props) => {
     const codeSnippet = {
         padding: '1rem',
         backgroundColor: '#eee',
-        borderRadius: '1rem',
+        borderRadius: '.25rem',
         boxShadow: 'inset 0px 1px 1px 1px rgba(0, 0, 0, 0.1)'
     }
 
@@ -117,8 +117,6 @@ const component = (props) => {
         borderBottom: "1px solid #777"
     }
 
-    return <p>COMPONENT TEST</p>
-        /*
     return (
         <div>
             {Object.keys(props).map(propName => {
@@ -132,7 +130,6 @@ const component = (props) => {
             })} 
         </div>
     );
-        */
 };
 
 // component.propTypes = configSchema;
