@@ -1,5 +1,5 @@
 import * as ButtonComponent from './ButtonComponent';
-import * as Button from './Button';
+import * as LegacyButton from './Button';
 import * as Image from './Image';
 import * as Input from './Input';
 import * as LinkButton from './LinkButton';
@@ -7,7 +7,7 @@ import * as ElementBlock from './ElementBlock/src';
 import * as Text from './Text';
 
 export {
-    Button,
+    // Button,
     Image,
     Input,
     LinkButton,
@@ -15,3 +15,7 @@ export {
     ElementBlock,
     Text
 };
+
+export const getLegacyComponents = () => ({
+    Button: LegacyButton
+});
