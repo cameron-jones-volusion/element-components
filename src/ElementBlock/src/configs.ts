@@ -55,10 +55,5 @@ export const defaultConfig: ElementBlockConfigs = {
     showOnDesktop: true,
     showOnTablet: true,
     showOnMobile: true,
-    customAttrs: [
-        {
-            name: '',
-            value: ''
-        }
-    ]
+    customAttrs: []
 };

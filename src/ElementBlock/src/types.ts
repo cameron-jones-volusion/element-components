@@ -1,6 +1,7 @@
 export interface ElementBlockStylesProps {
     isFullWidth: boolean;
     hasHorizontalPadding: boolean;
+    horizontalPadding: paddingSizes;
     topPadding: paddingSizes;
     bottomPadding: paddingSizes;
     showOnDesktop: boolean;

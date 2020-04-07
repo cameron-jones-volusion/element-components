@@ -5,12 +5,24 @@ import { defaultConfig } from './configs';
 import { ElementBlockProps, ObjectLiteral } from './types';
 
 const Block = (props: ElementBlockProps) => {
-    const { globalSettings, customAttrs, children } = props;
+    const { globalSettings, customAttrs, children, ...rest } = props;
     const styles = StyleSheet.create(getStyles(props, globalSettings));
-    const customProps: ObjectLiteral = {};
-    customAttrs.forEach((attr: { name: string; value: string }) => {
+    /* const customProps: ObjectLiteral = {}; */
+    /* customAttrs.forEach((attr: { name: string; value: string }) => { */
+    /*     const hyphenateString = (string = '') => { */
+    /*         // const specialChars = /[^a-zA-Z0-9\s-_]+/g; */
+    /*         const nonAlphaNumericChars = /[^a-zA-Z0-9]+/g; */
+    /*         const attr = string */
+    /*             .trim() */
+    /*             // .replace(specialChars, '') */
+    /*             .replace(nonAlphaNumericChars, '-'); */
+    /*         return attr; */
+    /*     }; */
+    /*     const fullAttrName = `data-element-${hyphenateString(attr.name)}`; */
+    /*     customProps[fullAttrName] = attr.value; */
+    /* }); */
+    const attrs = customAttrs.map((attr: { name: string; value: string }) => {
         const hyphenateString = (string = '') => {
-            // const specialChars = /[^a-zA-Z0-9\s-_]+/g;
             const nonAlphaNumericChars = /[^a-zA-Z0-9]+/g;
             const attr = string
                 .trim()
@@ -18,11 +30,15 @@ const Block = (props: ElementBlockProps) => {
                 .replace(nonAlphaNumericChars, '-');
             return attr;
         };
-        const fullAttrName = `data-element-${hyphenateString(attr.name)}`;
-        customProps[fullAttrName] = attr.value;
-    });
+        return {
+            [`data-element-${hyphenateString(attr.name)}`]: value
+        }
+    })
+    .reduce((acc, attr) => {
+        return { ...acc, ...attr }
+    }, {})
     return (
-        <div className={css(styles.wrapper)} {...customProps}>
+        <div {...attrs} className={css(styles.wrapper)} >
             {children}
         </div>
     );

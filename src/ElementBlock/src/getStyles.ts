@@ -1,9 +1,6 @@
-import { ElementBlockStylesProps, ObjectLiteral } from './types';
+import { ElementBlockStylesProps } from './types';
 
-export const getStyles = (
-    blockConfig: ElementBlockStylesProps,
-    globalSettings: ObjectLiteral
-) => {
+export const getStyles = (blockConfig: ElementBlockStylesProps) => {
     const mobileStyles =
         blockConfig.showOnMobile === false
             ? {
@@ -31,23 +28,11 @@ export const getStyles = (
     return {
         wrapper: {
             width: '100%',
-            maxWidth: blockConfig.isFullWidth
-                ? undefined
-                : globalSettings.__________,
-            paddingRight: blockConfig.hasHorizontalPadding
-                ? globalSettings.__________
-                : undefined,
-            paddingLeft: blockConfig.hasHorizontalPadding
-                ? globalSettings.__________
-                : undefined,
-            paddingTop: getPaddingAmount(
-                blockConfig.topPadding,
-                globalSettings
-            ),
-            paddingBottom: getPaddingAmount(
-                blockConfig.bottomPadding,
-                globalSettings
-            ),
+            maxWidth: blockConfig.isFullWidth && '96rem',
+            paddingRight: getPaddingAmount(blockConfig.horizontalPadding),
+            paddingLeft: getPaddingAmount(blockConfig.horizontalPadding),
+            paddingTop: getPaddingAmount(blockConfig.topPadding),
+            paddingBottom: getPaddingAmount(blockConfig.bottomPadding),
             ...mobileStyles,
             ...tabletStyles,
             ...desktopStyles
@@ -56,10 +41,9 @@ export const getStyles = (
 };
 
 const getPaddingAmount = (
-    paddingSize: 'None' | 'Small' | 'Medium' | 'Large',
-    globalSettings: ObjectLiteral
+    paddingSize: 'None' | 'Small' | 'Medium' | 'Large'
 ) => {
-    if (/^small$/i.test(paddingSize)) return globalSettings.__________;
-    if (/^medium$/i.test(paddingSize)) return globalSettings.__________;
-    if (/^large$/i.test(paddingSize)) return globalSettings.__________;
+    if (/^small$/i.test(paddingSize)) return '0.5rem';
+    if (/^medium$/i.test(paddingSize)) return '1rem';
+    if (/^large$/i.test(paddingSize)) return '1.5rem';
 };
